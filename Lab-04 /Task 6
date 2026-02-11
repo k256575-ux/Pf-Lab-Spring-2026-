@@ -1,0 +1,21 @@
+#include<stdio.h>
+int main()
+{
+	int m1, m2, m3, m4, m5; 
+	int obtained_marks;
+	float percentage;
+	printf("Enter marks of 5 subjects: \n");
+	scanf("%d %d %d %d %d" , &m1, &m2, &m3, &m4, &m5);
+	obtained_marks = m1 + m2 + m3 + m4 +m5;
+	percentage = obtained_marks/5;
+	if(percentage>=85)
+	printf("Grade A");
+	else if(percentage>=70)
+	printf("Grade B");
+		else if(percentage>=50)
+	printf("Grade C");
+	else
+	printf("Fail");
+	return 0;
+	
+}
