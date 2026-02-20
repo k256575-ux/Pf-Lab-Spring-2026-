@@ -1,0 +1,79 @@
+#include <stdio.h>
+
+int main() {
+    int category, item, quantity;
+    float price = 0, totalBill;
+    char foodName[20];
+
+    
+    printf("===== Restaurant Menu =====\n");
+    printf("1. Fast Food\n");
+    printf("2. Desi Food\n");
+    printf("Enter category choice: ");
+    scanf("%d", &category);
+
+    
+    switch (category) {
+
+        case 1:  
+            printf("\nFast Food Menu:\n");
+            printf("1. Burger (Rs.500)\n");
+            printf("2. Pizza (Rs.1200)\n");
+            printf("Enter item choice: ");
+            scanf("%d", &item);
+
+            switch (item) {
+                case 1:
+                    price = 500;
+                    sprintf(foodName, "Burger");
+                    break;
+                case 2:
+                    price = 1200;
+                    sprintf(foodName, "Pizza");
+                    break;
+                default:
+                    printf("Invalid Fast Food item!\n");
+                    return 0;
+            }
+            break;
+            
+        case 2:   
+            printf("\nDesi Food Menu:\n");
+            printf("1. Biryani (Rs.350)\n");
+            printf("2. Karahi (Rs.1500)\n");
+            printf("Enter item choice: ");
+            scanf("%d", &item);
+
+            switch (item) {
+                case 1:
+                    price = 350;
+                    sprintf(foodName, "Biryani");
+                    break;
+                case 2:
+                    price = 1500;
+                    sprintf(foodName, "Karahi");
+                    break;
+                default:
+                    printf("Invalid Desi Food item!\n");
+                    return 0;
+            }
+            break;
+
+        default:
+            printf("Invalid category!\n");
+            return 0;
+    }
+
+
+    printf("Enter quantity: ");
+    scanf("%d", &quantity);
+
+    
+    totalBill = price * quantity;
+
+    
+    printf("\nSelected Item: %s\n", foodName);
+    printf("Total Bill = Rs. %.2f\n", totalBill);
+
+    return 0;
+}
