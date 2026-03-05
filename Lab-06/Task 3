@@ -1,0 +1,22 @@
+#include <stdio.h>
+
+int main() {
+    int days;      
+    int total = 0; 
+    int i;         
+
+    
+    printf("Enter the number of days: ");
+    scanf("%d", &days);
+
+    
+    for(i = 1; i <= days; i++) {
+        total = total + i;  
+        printf("Day %d: ran %d km, total so far: %d km\n", i, i, total);
+    }
+
+    
+    printf("Total distance covered in %d days is %d km\n", days, total);
+
+    return 0;
+}
