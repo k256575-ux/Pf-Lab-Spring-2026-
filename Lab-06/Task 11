@@ -1,0 +1,33 @@
+#include <stdio.h>
+
+int main() {
+    float itemPrice;       
+    float totalBill = 0;   
+    int addMore;           
+
+
+    do {
+    
+        printf("Enter price of the item: ");
+        scanf("%f", &itemPrice);
+
+        
+        totalBill = totalBill + itemPrice;
+
+        
+        printf("Do you want to add another item? (1 = Yes, 0 = No): ");
+        scanf("%d", &addMore);
+
+    } while (addMore == 1); 
+
+    
+    if (totalBill > 3000) {
+        totalBill = totalBill - (totalBill * 0.10); 
+        printf("10%% discount applied!\n");
+    }
+
+    
+    printf("Your final bill is: %.2f\n", totalBill);
+
+    return 0;
+}
