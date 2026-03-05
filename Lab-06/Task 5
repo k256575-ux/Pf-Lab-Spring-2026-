@@ -1,0 +1,31 @@
+#include <stdio.h>
+
+int main() {
+    float units;       
+    float total = 0;   
+    int days = 0;      
+
+    printf("Enter daily units used (type -999 to stop):\n");
+
+    
+    while (1) {
+        printf("Day %d units: ", days + 1);
+        scanf("%f", &units);
+
+        if (units == -999) {
+            break;  
+        }
+
+        total = total + units;  
+        days = days + 1;        
+    }
+
+    if (days > 0) {
+        printf("\nTotal units used: %.2f\n", total);
+        printf("Average daily usage: %.2f units\n", total / days);
+    } else {
+        printf("\nNo units were entered.\n");
+    }
+
+    return 0;
+}
