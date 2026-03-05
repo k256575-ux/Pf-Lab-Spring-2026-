@@ -1,22 +1,16 @@
 #include <stdio.h>
-
 int main() {
-    int days;      
-    int total = 0; 
-    int i;         
+    int code;  
+    do {
+        printf("Enter the access code: ");
+        scanf("%d", &code);
 
-    
-    printf("Enter the number of days: ");
-    scanf("%d", &days);
+        if (code != 2006) {
+            printf("Incorrect code! Try again.\n");
+        }
+    } while (code != 2006);  
 
-    
-    for(i = 1; i <= days; i++) {
-        total = total + i;  
-        printf("Day %d: ran %d km, total so far: %d km\n", i, i, total);
-    }
-
-    
-    printf("Total distance covered in %d days is %d km\n", days, total);
+    printf("Access granted. Door unlocked!\n");
 
     return 0;
 }
