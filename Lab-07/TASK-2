@@ -1,0 +1,36 @@
+#include <stdio.h>
+int main()
+{
+    int numbers[10];
+    int i;
+    int num;
+    int count = 0;
+
+    printf("Enter 10 numbers:\n");
+
+    for(i = 0; i < 10; i++)
+    {
+        printf("Enter number %d: ", i + 1);
+        scanf("%d", &numbers[i]);
+    }
+    printf("Enter the number you want to find: ");
+    scanf("%d", &num);
+    for(i = 0; i < 10; i++)
+    {
+        if(numbers[i] == num)
+        {
+            count = count + 1;
+        }
+    }
+
+    if(count == 0)
+    {
+        printf("Number not found in the array.");
+    }
+    else
+    {
+        printf("Number found %d times.", count);
+    }
+
+    return 0;
+}
