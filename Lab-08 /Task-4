@@ -1,0 +1,83 @@
+#include <stdio.h>
+int main() {
+
+    int a[3][3] = {{1,2,3},{0,1,4},{5,6,0}};
+    int i,j;
+
+    printf("Matrix:\n");
+    for(i=0;i<3;i++){
+        for(j=0;j<3;j++){
+            printf("%d ", a[i][j]);
+        }
+        printf("\n");
+    }
+
+    printf("\nTranspose:\n");
+    for(i=0;i<3;i++){
+        for(j=0;j<3;j++){
+            printf("%d ", a[j][i]);
+        }
+        printf("\n");
+    }
+
+    int det;
+
+    det = a[0][0]*(a[1][1]*a[2][2] - a[1][2]*a[2][1])
+        - a[0][1]*(a[1][0]*a[2][2] - a[1][2]*a[2][0])
+        + a[0][2]*(a[1][0]*a[2][1] - a[1][1]*a[2][0]);
+
+    printf("\nDet = %d\n", det);
+    int c[3][3];
+
+    c[0][0] = (a[1][1]*a[2][2] - a[1][2]*a[2][1]);
+    c[0][1] = -(a[1][0]*a[2][2] - a[1][2]*a[2][0]);
+    c[0][2] = (a[1][0]*a[2][1] - a[1][1]*a[2][0]);
+
+    c[1][0] = -(a[0][1]*a[2][2] - a[0][2]*a[2][1]);
+    c[1][1] = (a[0][0]*a[2][2] - a[0][2]*a[2][0]);
+    c[1][2] = -(a[0][0]*a[2][1] - a[0][1]*a[2][0]);
+
+    c[2][0] = (a[0][1]*a[1][2] - a[0][2]*a[1][1]);
+    c[2][1] = -(a[0][0]*a[1][2] - a[0][2]*a[1][0]);
+    c[2][2] = (a[0][0]*a[1][1] - a[0][1]*a[1][0]);
+
+    printf("\nCofactor:\n");
+    for(i=0;i<3;i++){
+        for(j=0;j<3;j++){
+            printf("%d ", c[i][j]);
+        }
+        printf("\n");
+    }
+
+    int adj[3][3];
+
+    for(i=0;i<3;i++){
+        for(j=0;j<3;j++){
+            adj[i][j] = c[j][i];
+        }
+    }
+
+    printf("\nAdjoint:\n");
+    for(i=0;i<3;i++){
+        for(j=0;j<3;j++){
+            printf("%d ", adj[i][j]);
+        }
+        printf("\n");
+    }
+
+    if(det != 0){
+        printf("\nInverse:\n");
+
+        for(i=0;i<3;i++){
+            for(j=0;j<3;j++){
+                printf("%.2f ", adj[i][j] / (float)det);
+            }
+            printf("\n");
+        }
+    }
+    else{
+        printf("\nNo inverse\n");
+    }
+
+    return 0;
+}
