@@ -1,0 +1,36 @@
+#include <stdio.h>
+int main() {
+    int attendance[4][5] = {
+        {1, 1, 0, 1, 1},
+        {1, 0, 0, 1, 0},
+        {1, 1, 1, 1, 1},
+        {0, 0, 1, 0, 0}
+    };
+
+    int (*p)[5] = attendance;
+
+    for (int i = 0; i < 4; i++) {
+
+        int total = 0;
+
+        printf("Student %d: ", i + 1);
+        for (int j = 0; j < 5; j++) {
+
+            int value = (*(p + i))[j];
+
+            printf("%d ", value);
+
+            total += value;
+        }
+
+        printf("| Total = %d", total);
+
+        if (total < 3) {
+            printf("  At Risk");
+        }
+
+        printf("\n");
+    }
+
+    return 0;
+}
