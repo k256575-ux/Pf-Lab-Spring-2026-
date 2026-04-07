@@ -1,0 +1,45 @@
+#include <stdio.h>
+int main() {
+    int marks[6];
+    int *p = marks; 
+    int highest = 0;
+    int i;
+
+    printf(" Professor's Grade Scaling Tool \n");
+    
+    for (i = 0; i < 6; i++) {
+        printf("Enter marks for student %d: ", i + 1);
+        scanf("%d", (p + i)); 
+    }
+
+    
+    highest = *p; 
+    for (i = 1; i < 6; i++) {
+        if (*(p + i) > highest) {
+            highest = *(p + i); 
+        }
+    }
+
+    printf("\nOriginal Marks: ");
+    for (i = 0; i < 6; i++) {
+        printf("%d ", *(p + i));
+    }
+
+    
+    for (i = 0; i < 6; i++) {
+        float original = (float)*(p + i);
+        int scaledMark = (int)((original / highest) * 100);
+        
+        *(p + i) = scaledMark; 
+    }
+
+    
+    printf("\nScaled Marks:   ");
+    for (i = 0; i < 6; i++) {
+        printf("%d ", *(p + i));
+    }
+
+    printf("\n\nAll grades scaled based on the top score of %d.\n", highest);
+
+    return 0;
+}
