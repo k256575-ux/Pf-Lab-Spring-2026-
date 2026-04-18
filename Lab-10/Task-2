@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char masterPassword[] = "PassWord123";
+    char userInput[50];
+    int attempts = 0;
+    const int MAX_ATTEMPTS = 3;
+
+    while (attempts < MAX_ATTEMPTS) {
+        printf("\nEnter password (Attempt %d/%d): ", attempts + 1, MAX_ATTEMPTS);
+        scanf("%s", userInput);
+
+
+        if (strlen(userInput) == 0) {
+            printf("Password cannot be empty.\n");
+            continue;
+        }
+
+        int result = strcmp(userInput, masterPassword);
+
+        if (result == 0) {
+            printf("Access Granted!\n");
+            return 0; 
+        } else {
+            attempts++;
+            printf("Incorrect password.");
+
+            if (result < 0) {
+                printf(" (Hint: Your input comes alphabetically BEFORE the password)\n");
+            } else {
+                printf(" (Hint: Your input comes alphabetically AFTER the password)\n");
+            }
+
+            if (attempts == 2) {
+                if (strncmp(userInput, masterPassword, 3) == 0) {
+                    printf("Partial Hint: The first 3 characters match!\n");
+                } else {
+                    printf("Partial Hint: Even the first 3 characters don't match.\n");
+                }
+            }
+        }
+    }
+
+    printf("\nToo many failed attempts. You are locked out.\n");
+
+    return 0;
+}
