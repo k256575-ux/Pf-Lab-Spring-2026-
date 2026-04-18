@@ -1,0 +1,29 @@
+#include <stdio.h>
+
+int main() {
+    FILE *fptr;
+    char setting[50];
+    int value;
+
+    fptr = fopen("config.txt", "r");
+
+    if (fptr == NULL) {
+        printf("Config file not found. Creating a default config.txt...\n");
+
+        fptr = fopen("config.txt", "w");
+        if (fptr != NULL) {
+            fprintf(fptr, "max_users=50\ntimeout=30\nlevel=1\n");
+            fclose(fptr);
+            printf("Success: Default settings written. Run the program again to load them.\n");
+        }
+    } else {
+
+        printf("--- Loading Settings ---\n");
+        while (fscanf(fptr, "%s", setting) != EOF) {
+            printf("Loaded: %s\n", setting);
+        }
+        fclose(fptr);
+    }
+
+    return 0;
+}
