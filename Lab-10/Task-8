@@ -1,0 +1,44 @@
+#include <stdio.h>
+
+int main() {
+    FILE *fptr;
+    int scores[5];
+    int val, sum = 0;
+    float average;
+
+    fptr = fopen("survey.txt", "w");
+    if (fptr == NULL) {
+        printf("Error creating file!\n");
+        return 1;
+    }
+
+    printf("--- Enter 5 survey scores (1-10) ---\n");
+    for (int i = 0; i < 5; i++) {
+        printf("Score %d: ", i + 1);
+        scanf("%d", &scores[i]);
+        fprintf(fptr, "%d\n", scores[i]);
+    }
+
+    fclose(fptr);
+    printf("\nScores recorded successfully.\n");
+
+    fptr = fopen("survey.txt", "r");
+    if (fptr == NULL) {
+        printf("Error opening file for reading!\n");
+        return 1;
+    }
+
+    while (fscanf(fptr, "%d", &val) != EOF) {
+        sum += val;
+    }
+
+    average = (float)sum / 5;
+
+    printf("\n--- Survey Analysis ---\n");
+    printf("Total Sum: %d\n", sum);
+    printf("Average Score: %.2f\n", average);
+
+    fclose(fptr);
+
+    return 0;
+}
