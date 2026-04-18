@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char originalEmail[100];
+    char emailBuffer[100];
+    char displayString[150] = "Email: "; 
+    char *atPointer;
+
+    printf("Enter raw email address: ");
+    scanf("%s", originalEmail);
+
+    strcpy(emailBuffer, originalEmail);
+
+    atPointer = strchr(emailBuffer, '@');
+
+    if (atPointer == NULL) {
+        printf("Error: Invalid email format (missing '@').\n");
+    } else {
+        
+        char *domain = atPointer + 1;
+
+        if (strstr(domain, ".") == NULL) {
+            printf("Error: Domain portion is missing a '.' separator.\n");
+        } else {
+            printf("Extracted Domain: %s\n", domain);
+
+            strcat(displayString, emailBuffer);
+            printf("Formatted Output: %s\n", displayString);
+        }
+    }
+
+    return 0;
+}
