@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    FILE *fptr;
+    char productName[50];
+    int quantity;
+
+    fptr = fopen("inventory.txt", "a");
+
+    if (fptr == NULL) {
+        printf("Error: Could not open or create the inventory file.\n");
+        return 1;
+    }
+
+    printf("--- Shop Inventory Update ---\n");
+    printf("Enter Product Name: ");
+    scanf("%s", productName);
+    printf("Enter Quantity: ");
+    scanf("%d", &quantity);
+
+    
+    fprintf(fptr, "%s %d\n", productName, quantity);
+
+    fclose(fptr);
+    printf("Record successfully appended to log.\n");
+
+    fptr = fopen("inventory.txt", "r");
+    
+    if (fptr == NULL) {
+        printf("Error: Could not open file for reading.\n");
+        return 1;
+    }
+
+    printf("\n--- Full Inventory History ---\n");
+    while (fscanf(fptr, "%s %d", productName, &quantity) != EOF) {
+        printf("Product: %-15s | Quantity: %d\n", productName, quantity);
+    }
+
+    
+    fclose(fptr);
+
+    return 0;
+}
