@@ -1,0 +1,27 @@
+#include <stdio.h>
+int totalPower(int floors) {
+    if (floors == 1) {
+        return 100;
+    } 
+    else {        
+        int currentFloorPower = 100;
+        for(int i = 1; i < floors; i++) {
+            currentFloorPower *= 2;
+        }
+        return currentFloorPower + totalPower(floors - 1);
+    }
+}
+int main() {
+    int n;
+
+    printf("Enter the number of floors: ");
+    scanf("%d", &n);
+    if (n < 1) {
+        printf("Please enter a valid number of floors (1 or more).\n");
+    } else {
+        int result = totalPower(n);
+        printf("The total power consumed by %d floors is: %d kWh\n", n, result);
+    }
+
+    return 0;
+}
