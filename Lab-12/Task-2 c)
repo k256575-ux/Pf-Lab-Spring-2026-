@@ -1,0 +1,37 @@
+#include <stdio.h>
+#include <stdlib.h>
+int main() {
+    int *contacts;
+    int i;
+    contacts = (int*)malloc(3 * sizeof(int));
+    if (contacts == NULL) {
+        printf("Initial memory allocation failed!\n");
+        return 1;
+    }
+    printf("--- Part A: Initial 3 Contacts ---\n");
+    for (i = 0; i < 3; i++) {
+        printf("Enter ID for Contact %d: ", i + 1);
+        scanf("%d", &contacts[i]);
+    }
+    printf("\n--- Part B: Expanding to 5 Contacts ---\n");    
+    int *temp = (int*)realloc(contacts, 5 * sizeof(int));
+    if (temp == NULL) {
+        printf("Error: realloc failed! Memory could not be expanded.\n");
+        free(contacts);
+        return 1;
+    } else {
+        contacts = temp;
+    }
+    for (i = 3; i < 5; i++) {
+        printf("Enter ID for new Contact %d: ", i + 1);
+        scanf("%d", &contacts[i]);
+    }
+    printf("\n--- Complete Updated Contact List ---\n");
+    for (i = 0; i < 5; i++) {
+        printf("Contact %d ID: %d\n", i + 1, contacts[i]);
+    }
+    free(contacts);
+    contacts = NULL; 
+    printf("\nMemory freed and pointer set to NULL successfully.\n");
+    return 0;
+}
