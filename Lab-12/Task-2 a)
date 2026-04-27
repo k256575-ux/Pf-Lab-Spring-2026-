@@ -1,0 +1,23 @@
+#include <stdio.h>
+#include <stdlib.h>
+int main() {
+    int *contacts;
+    int initial_size = 3;
+    contacts = (int*)malloc(initial_size * sizeof(int));
+    if (contacts == NULL) {
+        printf("Memory allocation failed!\n");
+        return 1;
+    }
+    printf("Enter %d initial contact IDs:\n", initial_size);
+    for (int i = 0; i < initial_size; i++) {
+        printf("Contact %d: ", i + 1);
+        scanf("%d", &contacts[i]);
+    }
+    printf("\nInitial Contact List:\n");
+    for (int i = 0; i < initial_size; i++) {
+        printf("ID: %d\n", contacts[i]);
+    }
+    free(contacts);
+    contacts = NULL;
+    return 0;
+}
