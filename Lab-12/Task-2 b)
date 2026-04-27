@@ -1,0 +1,37 @@
+#include <stdio.h>
+#include <stdlib.h>
+int main() {
+    int *contacts;
+    
+    contacts = (int*)malloc(3 * sizeof(int));
+    if (contacts == NULL) return 1;
+
+    printf("Enter 3 initial contact IDs:\n");
+    for (int i = 0; i < 3; i++) {
+        scanf("%d", &contacts[i]);
+    }
+
+    printf("\nExpanding list to 5 contacts...\n");
+    
+    int *temp = (int*)realloc(contacts, 5 * sizeof(int));
+    
+    if (temp == NULL) {
+        printf("Realloc failed! Keeping original list.\n");
+    } else {
+        contacts = temp; 
+        
+        printf("Enter 2 new contact IDs:\n");
+        for (int i = 3; i < 5; i++) {
+            printf("Contact %d: ", i + 1);
+            scanf("%d", &contacts[i]);
+        }
+    }
+
+    printf("\n- Final Updated Phone Book -\n");
+    for (int i = 0; i < 5; i++) {
+        printf("Slot %d: ID %d\n", i + 1, contacts[i]);
+    }
+    free(contacts);
+    contacts = NULL;
+    return 0;
+}
